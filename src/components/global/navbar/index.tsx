@@ -1,7 +1,7 @@
 "use client";
 import { PAGE_BREAD_CRUMBS } from "@/constants/pages";
 import { usePaths } from "@/hooks/use-nav";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import React from "react";
 import Sheet from "../sheet";
 import { LogoSmall } from "@/svgs/logo-small";
@@ -12,6 +12,9 @@ import Items from "../sidebar/items";
 import { SubscriptionPlan } from "../subscription-plan";
 import UpgradeCard from "../sidebar/upgrade";
 import CreateAutomation from "../create-automation";
+import Search from "../search";
+import Notifications from "./notifications";
+import MainBreadCrumb from "../main-bread-crumb";
 
 type Props = {
   slug: string;
@@ -61,10 +64,16 @@ const Navbar = ({ slug }: Props) => {
               </div>
             </Sheet>
           </span>
+          {/* <div className="flex items-center gap-x-3"> */}
 
           <Search/>
           <CreateAutomation/>
+          <Notifications/>
+          {/* </div> */}
         </div>
+        <MainBreadCrumb page={page === slug ? 'Home' : page}
+        slug={slug}
+        />
       </div>
 
     )
