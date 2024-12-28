@@ -1,8 +1,8 @@
 export const Whatsapp = () => {
   return (
     <svg
-      width="800px"
-      height="800px"
+      width="40"
+      height="40"
       viewBox="0 0 48 48"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
