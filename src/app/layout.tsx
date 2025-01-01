@@ -4,7 +4,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { Toaster } from 'sonner'
+import { Toaster } from "sonner";
+import ReactQueryProvider from "@/providers/react-query-provider";
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -21,16 +22,14 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-        suppressHydrationWarning
-        className={jakarta.className}>
+        <body suppressHydrationWarning className={jakarta.className}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             disableTransitionOnChange
           >
-            {children}
-            <Toaster/>
+            <ReactQueryProvider>{children}</ReactQueryProvider>
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

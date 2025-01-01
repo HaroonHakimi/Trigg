@@ -10,7 +10,9 @@ const Page = (props: Props) => {
   // WIP connec treal automations list
   return (
     <div className="grid grid-cols-1 lg:grid-cols-6 gap-5">
-      <div className="lg:col-span-4"><AutomationList/></div>
+      <div className="lg:col-span-4">
+        <AutomationList />
+      </div>
       <div className="lg:col-span-2">
         <div
           className="flex flex-col rounded-cl bg-background-80 gap-y-6 p-5 border-[1px]
@@ -37,7 +39,7 @@ const Page = (props: Props) => {
               </div>
             ))}
           </div>
-          <CreateAutomation/>
+          <CreateAutomation />
         </div>
       </div>
     </div>
