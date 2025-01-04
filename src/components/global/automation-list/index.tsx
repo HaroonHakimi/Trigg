@@ -3,20 +3,23 @@
 import { usePaths } from "@/hooks/use-nav";
 import { cn, getMonth } from "@/lib/utils";
 import Link from "next/link";
-import React from "react";
+import React, { useMemo } from "react";
 import GradientButton from "../gradient-button";
 import { Button } from "@/components/ui/button";
 import { useQueryAutomations } from "@/hooks/use-queries";
 import CreateAutomation from "../create-automation";
+import { useMutationDataState } from "@/hooks/use-mutation-data";
 
 type Props = {};
 
 const AutomationList = (props: Props) => {
   const { data } = useQueryAutomations();
 
+  const { latestVariable } = useMutationDataState(["create-automation"]);
+
   const { pathname } = usePaths();
 
-  if (data?.status !== 200 || data?.data.length <= 0) {
+  if (data?.status !== 200 || data.data.length <= 0) {
     return (
       <div className="h-[70vh] flex justify-center items-center flex-col gap-y-3">
         <h3 className="text-lg text-gray-400">No Automations</h3>
@@ -24,9 +27,19 @@ const AutomationList = (props: Props) => {
       </div>
     );
   }
+
+  const optimisticUiData = useMemo(() => {
+    if (latestVariable?.variables) {
+      const test = [latestVariable.variables, ...data.data];
+      console.log(test)
+      return { data: test };
+    }
+    return data;
+  }, [latestVariable, data]);
+
   return (
     <div className="flex flex-col gap-y-3">
-      {data.data!.map((automation) => (
+      {optimisticUiData.data!.map((automation) => (
         <Link
           href={`${pathname}/${automation.id}`}
           key={automation.id}
