@@ -2,6 +2,7 @@
 
 import { onCurrentUser } from "../user";
 import {
+  addListener,
   createAutomation,
   findAutomation,
   getAutomations,
@@ -59,6 +60,23 @@ export const updateAutomationName = async (
     const update = await updateAutomation(automationId, data);
     if (data) return { status: 200, data: "Automation successfully updated" };
     return { status: 404, data: "Oops! Something went wrong" };
+  } catch (error) {
+    return { status: 500, data: "Internal Server Error" };
+  }
+};
+
+export const saveListener = async (
+  automationId: string,
+  listener: "SMARTAI" | "MESSAGE",
+  prompt: string,
+  reply?: string
+) => {
+  await onCurrentUser();
+
+  try {
+    const create = await addListener(automationId, listener, prompt, reply);
+    if (create) return { status: 200, data: "Listner create" };
+    return { status: 404, data: "Cant save listener" };
   } catch (error) {
     return { status: 500, data: "Internal Server Error" };
   }

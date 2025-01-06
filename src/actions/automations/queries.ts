@@ -65,10 +65,32 @@ export const updateAutomation = async (
   }
 ) => {
   return await client.automation.update({
-    where: {id},
+    where: { id },
     data: {
       name: update.name,
-      active: update.active
-    }
-  })
+      active: update.active,
+    },
+  });
+};
+
+export const addListener = async (
+  automationId: string,
+  listener: "SMARTAI" | "MESSAGE",
+  prompt: string,
+  reply?: string
+) => {
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      listener: {
+        create: {
+          listener,
+          prompt,
+          commentReply: reply,
+        },
+      },
+    },
+  });
 };
