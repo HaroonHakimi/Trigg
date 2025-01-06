@@ -3,6 +3,7 @@
 import { onCurrentUser } from "../user";
 import {
   addListener,
+  addTrigger,
   createAutomation,
   findAutomation,
   getAutomations,
@@ -81,3 +82,19 @@ export const saveListener = async (
     return { status: 500, data: "Internal Server Error" };
   }
 };
+
+
+export const saveTrigger = async (automationId: string, trigger: string[]) => {
+
+  await onCurrentUser()
+
+  try {
+    const create = await addTrigger(automationId, trigger)
+    if (create) return { status: 200, data: "Trigger saved" };
+    return { status: 404, data: "Cant save trigger" };
+  } catch (error) {
+    return { status: 500, data: "Internal Server Error" };
+  }
+
+
+}

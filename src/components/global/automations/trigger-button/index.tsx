@@ -14,7 +14,7 @@ const TriggerButton = ({ children, label }: Props) => {
         <div
           className="border-2 border-dashed w-full border-[#FFA500]
     hover: opacity-80 cursor-pointer transition duration-100 rounded-xl flex gap-x-2 justify-center
-    items-center p-2"
+    items-center p-5 mt-4"
         >
           <BlueAddIcon />
           <p className="text-[#FF8C00]">{label}</p>
@@ -22,7 +22,7 @@ const TriggerButton = ({ children, label }: Props) => {
       }
       className="w-[400px]"
     >
-      hi
+      {children}
     </PopOver>
   );
 };
