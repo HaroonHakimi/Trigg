@@ -8,8 +8,8 @@ type Props = {
 
 const UpgradeCard = ({ slug }: Props) => {
   return (
-    <Link
-      href={`/dashboard/${slug}/upgrade`}
+    <div
+      // href={`/dashboard/${slug}/settings`}
       className="bg-[#252525] p-3 rounded-2xl flex flex-col gap-y-3"
     >
       <span className="text-sm ">
@@ -27,7 +27,7 @@ const UpgradeCard = ({ slug }: Props) => {
       </p>
 
       <PaymentButton></PaymentButton>
-    </Link>
+    </div>
   );
 };
 

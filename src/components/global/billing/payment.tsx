@@ -17,7 +17,7 @@ const PaymentCard = ({ label, current, landing }: Props) => {
         "rounded-xl overflow-hidden",
         label !== current
           ? "bg-background-90" // Matches the background color of the page
-          : "p-[2px] bg-gradient-to-b from-[#FFDBBB] via-[#FFA500] to-[#FF8C00]"
+          : "p-[2px] bg-gradient-to-b from-[#6d60a3] via-[#9434e6] to-[#CC3BD4]"
       )}
     >
       <div

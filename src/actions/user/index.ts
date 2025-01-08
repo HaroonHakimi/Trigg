@@ -2,9 +2,10 @@
 
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-import { createUser, findUser } from "./queries";
+import { createUser, findUser, updateSubscription } from "./queries";
 import { refreshToken } from "@/lib/fetch";
 import { updateIntegration } from "./inegrations";
+import { stripe } from "@/app/(protected)/api/payment/route";
 
 export const onCurrentUser = async () => {
   const user = await currentUser();
@@ -33,7 +34,7 @@ export const onBoardUser = async () => {
           const today = new Date();
           const expire_date = today.setDate(today.getDate() + 60);
           const updateToken = await updateIntegration(
-              refresh.access_token,
+            refresh.access_token,
             new Date(expire_date),
             found.integrations[0].id
           );
@@ -57,26 +58,43 @@ export const onBoardUser = async () => {
       user.emailAddresses[0].emailAddress!
     );
 
-    return { status: 201, dat: created}
+    return { status: 201, dat: created };
   } catch (error) {
-    console.log(error)
-    return { status: 500}
+    console.log(error);
+    return { status: 500 };
   }
 };
 
-
-export const onUserInfo = async  () => {
-  const user = await onCurrentUser()
+export const onUserInfo = async () => {
+  const user = await onCurrentUser();
   try {
-
     const profile = await findUser(user.id);
 
-    if (profile) return {status: 200, data: profile}
+    if (profile) return { status: 200, data: profile };
 
-    return { status: 404 }
-    
+    return { status: 404 };
   } catch (error) {
-    return { status: 500}
-    
+    return { status: 500 };
   }
-}
+};
+
+export const onSubscribe = async (session_id: string) => {
+  const user = await onCurrentUser();
+
+  try {
+    const session = await stripe.checkout.sessions.retrieve(session_id);
+
+    if (session) {
+      const subscribed = await updateSubscription(user.id, {
+        customerId: session.customer as string,
+        plan: "PRO",
+      });
+
+      if (subscribed) return { status: 200}
+      return { status: 401}
+    }
+    return { status: 404}
+  } catch (error) {
+    return { status: 500 }
+  }
+};
