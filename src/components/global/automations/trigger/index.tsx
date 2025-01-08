@@ -9,6 +9,9 @@ import { AUTOMATION_TRIGGERS } from "@/constants/automation";
 import { SmartAi } from "@/icons";
 import { useTriggers } from "@/hooks/use-automation";
 import { cn } from "@/lib/utils";
+import Keywords from "./keyyword";
+import { Button } from "@/components/ui/button";
+import Loader from "../../loader";
 
 type Props = {
   id: string;
@@ -70,6 +73,19 @@ const Trigger = ({ id }: Props) => {
             <p className="text-sm font-light">{trigger.description}</p>
           </div>
         ))}
+
+        <Keywords id={id} />
+        <Button
+          onClick={onSaveTrigger}
+          disabled={types?.length === 0}
+          className="bg-gradient-to-br from-[#ff8c00] to-[#653801] font-medium text-white"
+        >
+          <Loader 
+          state={isPending}
+          >
+            Create Trigger
+          </Loader>
+        </Button>
       </div>
     </TriggerButton>
   );

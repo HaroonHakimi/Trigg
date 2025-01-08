@@ -1,45 +1,45 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useMutationData } from "./use-mutation-data";
+import { z } from 'zod'
 import {
   createAutomations,
+  deleteKeyword,
+  saveKeyword,
   saveListener,
+  savePosts,
+  // savePosts,
   saveTrigger,
   updateAutomationName,
-} from "@/actions/automations";
-import { z } from "zod";
-import useZodForm from "./use-zod-form";
-import { AppDispatch, useAppSelector } from "@/redux/store";
-import { useDispatch } from "react-redux";
-import { TRIGGER } from "@/redux/slices/automation";
+} from '@/actions/automations'
+import { useMutationData } from './use-mutation-data'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
+import useZodForm from './use-zod-form'
+import { AppDispatch, useAppSelector } from '@/redux/store'
+import { useDispatch } from 'react-redux'
+import { TRIGGER } from '@/redux/slices/automation'
 
 export const useCreateAutomation = (id?: string) => {
   const { isPending, mutate } = useMutationData(
-    ["create-automation"],
+    ['create-automation'],
     () => createAutomations(id),
-    "user-automations"
-  );
+    'user-automations'
+  )
 
-  return { isPending, mutate };
-};
+  return { isPending, mutate }
+}
 
 export const useEditAutomation = (automationId: string) => {
-  const [edit, setEdit] = useState(false);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  const enableEdit = () => {
-    setEdit(true);
-  };
-  const disableEdit = () => {
-    setEdit(false);
-  };
+  const [edit, setEdit] = useState(false)
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const enableEdit = () => setEdit(true)
+  const disableEdit = () => setEdit(false)
 
   const { isPending, mutate } = useMutationData(
-    ["update-automation"],
+    ['update-automation'],
     (data: { name: string }) =>
       updateAutomationName(automationId, { name: data.name }),
-    "automation-info",
+    'automation-info',
     disableEdit
-  );
+  )
 
   useEffect(() => {
     function handleClickOutside(this: Document, event: MouseEvent) {
@@ -47,16 +47,18 @@ export const useEditAutomation = (automationId: string) => {
         inputRef.current &&
         !inputRef.current.contains(event.target as Node | null)
       ) {
-        if (inputRef.current.value !== "")
-          mutate({ name: inputRef.current.value });
-        else disableEdit();
+        if (inputRef.current.value !== '') {
+          mutate({ name: inputRef.current.value })
+        } else {
+          disableEdit()
+        }
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return {
     edit,
@@ -64,55 +66,111 @@ export const useEditAutomation = (automationId: string) => {
     disableEdit,
     inputRef,
     isPending,
-  };
-};
+  }
+}
 
 export const useListener = (id: string) => {
-  const [listener, setListener] = useState<"MESSAGE" | "SMARTAI" | null>(null);
+  const [listener, setListener] = useState<'MESSAGE' | 'SMARTAI' | null>(null)
+
   const promptSchema = z.object({
     prompt: z.string().min(1),
     reply: z.string(),
-  });
+  })
 
   const { isPending, mutate } = useMutationData(
-    ["create-listener"],
+    ['create-lister'],
     (data: { prompt: string; reply: string }) =>
-      saveListener(id, listener || "MESSAGE", data.prompt, data.reply),
-    "automation-info"
-  );
+      saveListener(id, listener || 'MESSAGE', data.prompt, data.reply),
+    'automation-info'
+  )
 
   const { errors, onFormSubmit, register, reset, watch } = useZodForm(
     promptSchema,
     mutate
-  );
+  )
 
-  const onSetListener = (type: "SMARTAI" | "MESSAGE") => setListener(type);
-
-  return {
-    onSetListener,
-    register,
-    onFormSubmit,
-    listener,
-    isPending,
-  };
-};
+  const onSetListener = (type: 'SMARTAI' | 'MESSAGE') => setListener(type)
+  return { onSetListener, register, onFormSubmit, listener, isPending }
+}
 
 export const useTriggers = (id: string) => {
-  const types = useAppSelector(
-    (state) => state.AutomationReducer.trigger?.types
-  );
-  const dispatch: AppDispatch = useDispatch();
+  const types = useAppSelector((state) => state.AutomationReducer.trigger?.types)
 
-  const onSetTrigger = (type: "COMMENT" | "DM") =>
-    dispatch(TRIGGER({ trigger: { type } }));
+  const dispatch: AppDispatch = useDispatch()
+
+  const onSetTrigger = (type: 'COMMENT' | 'DM') =>
+    dispatch(TRIGGER({ trigger: { type } }))
 
   const { isPending, mutate } = useMutationData(
-    ["add-trigger"],
+    ['add-trigger'],
     (data: { types: string[] }) => saveTrigger(id, data.types),
+    'automation-info'
+  )
+
+  const onSaveTrigger = () => mutate({ types })
+  return { types, onSetTrigger, onSaveTrigger, isPending }
+}
+
+export const useKeywords = (id: string) => {
+  const [keyword, setKeyword] = useState('')
+  const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setKeyword(e.target.value)
+
+  const { mutate } = useMutationData(
+    ['add-keyword'],
+    (data: { keyword: string }) => saveKeyword(id, data.keyword),
     'automation-info',
-  );
-  const onSaveTrigger = () => mutate({ types });
-  return {
-    types, onSetTrigger, onSaveTrigger, isPending
+    () => setKeyword('')
+  )
+
+  const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      mutate({ keyword })
+      setKeyword('')
+    }
   }
-};
+
+  const { mutate: deleteMutation } = useMutationData(
+    ['delete-keyword'],
+    (data: { id: string }) => deleteKeyword(data.id),
+    'automation-info'
+  )
+
+  return { keyword, onValueChange, onKeyPress, deleteMutation }
+}
+
+export type InstagramPost = {
+  postid: string
+    caption?:string
+    media:string
+    mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+}
+
+export const useAutomationPosts = (id: string) => {
+
+  const [posts, setPosts] = useState<InstagramPost[]>([])
+
+  const onSelectPost = (post: InstagramPost) => {
+    setPosts((prev) => {
+      if (prev.find(p => p.postid === post.postid)) {
+        return prev.filter((item) => item.postid !== post.postid)
+      } else {
+        return [
+          ...prev, post
+        ]
+      }
+    })
+  }
+
+  const { mutate, isPending } = useMutationData(
+  ['attatch-posts'],
+  () => savePosts(id, posts),
+  'automation-info',
+  () => setPosts([])
+  )
+
+  return {
+    posts, onSelectPost, mutate, isPending
+  }
+
+}

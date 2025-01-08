@@ -1,5 +1,6 @@
 "use server";
 
+import { InstagramPost } from "@/hooks/use-automation";
 import { client } from "@/lib/prisma";
 import { v4 } from "uuid";
 
@@ -124,3 +125,42 @@ export const addTrigger = async (automationId: string, trigger: string[]) => {
     },
   });
 };
+
+export const addKeyword = async (automationId: string, keyword: string) => {
+  return await client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      keywords: {
+        create: {
+          word: keyword,
+        },
+      },
+    },
+  });
+};
+
+export const deleteKeywordQuery = async (id: string) => {
+  return await client.keyword.delete({
+    where: {
+      id,
+    },
+  });
+};
+
+export const addPost = async (id: string, posts: InstagramPost[]) => {
+  return await client.automation.update({
+    where: {
+      id
+    },
+    data: {
+      posts: {
+        createMany: {
+          data: posts
+        }
+      }
+    }
+  })
+
+}
