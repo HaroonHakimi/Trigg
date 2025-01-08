@@ -22,7 +22,7 @@ const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
       <Button
         //   onClick={onSocialOAuth}
         //   disabled={integrated?.name === strategy}
-        className="bg-gradient-to-br text-black/60 rounded-full text-lg font-medium hover:opacity-70 transition duration-200 from-[#FFDBBB] via-[#FFA500] to-[#FF8C00]"
+        className="bg-gradient-to-br text-white rounded-full  hover:opacity-70 transition duration-200 from-[#ff8c00] to-[#653801]"
       >
         {/* {inegrated ? "Connected" : "Connect"} */}
         Connect

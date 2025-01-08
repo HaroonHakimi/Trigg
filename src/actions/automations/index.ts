@@ -14,6 +14,7 @@ import {
   getAutomations,
   updateAutomation,
 } from "./queries";
+import { InstagramPostProps } from "@/types/posts.type";
 
 export const createAutomations = async (id?: string) => {
   const user = await onCurrentUser();
@@ -156,6 +157,23 @@ export const savePosts = async (
     const create = await addPost(automationId, posts);
 
     if (create) return { status: 200, data: "Posts saved" };
+    return { status: 404, data: "Cant save posts" };
+  } catch (error) {
+    return { status: 500, data: "Internal Server Error" };
+  }
+};
+
+export const activateAutomation = async (id: string, state: boolean) => {
+  await onCurrentUser();
+
+  try {
+    const update = await updateAutomation(id, { active: state });
+
+    if (update)
+      return {
+        status: 200,
+        data: `Automation ${state ? "activated" : "deactivated"}`,
+      };
     return { status: 404, data: "Cant save posts" };
   } catch (error) {
     return { status: 500, data: "Internal Server Error" };

@@ -58,7 +58,7 @@ const Navbar = ({ slug }: Props) => {
                 </div>
                 <SubscriptionPlan type="FREE">
                   <div className="flex-1 flex flex-col justify-end">
-                    <UpgradeCard />
+                    <UpgradeCard slug={slug} />
                   </div>
                 </SubscriptionPlan>
               </div>
