@@ -1,4 +1,7 @@
+import { onUserInfo } from "@/actions/user";
+import { onOAuthInstagram } from "@/actions/user/inegrations";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 
 type Props = {
@@ -9,7 +12,19 @@ type Props = {
 };
 
 const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
-  //WIP: wite up fetching data and get integrations from the db
+
+  const onInstaOAuth = () => onOAuthInstagram(strategy)
+
+  const { data } = useQuery({
+    queryKey: ['user-profile'],
+    queryFn: onUserInfo
+  })
+
+  const integrated = data?.data?.integrations.find(
+    integration => integration.name === strategy
+  )
+
+
   return (
     <div className="border-2 border=[#3352CC] rounded-2xl gap-x-5 p-5 flex items-center justify-between">
       {icon}
@@ -20,12 +35,11 @@ const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
         </p>
       </div>
       <Button
-        //   onClick={onSocialOAuth}
-        //   disabled={integrated?.name === strategy}
+          onClick={onInstaOAuth}
+          disabled={integrated?.name === strategy}
         className="bg-gradient-to-br text-white rounded-full  hover:opacity-70 transition duration-200 from-[#ff8c00] to-[#653801]"
       >
-        {/* {inegrated ? "Connected" : "Connect"} */}
-        Connect
+        {integrated ? "Connected" : "Connect"}
       </Button>
     </div>
   );
