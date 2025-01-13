@@ -1,4 +1,4 @@
-import { InstagramPost, useAutomationPosts } from "@/hooks/use-automation";
+import { useAutomationPosts } from "@/hooks/use-automation";
 import { useQueryAutomationPosts } from "@/hooks/use-queries";
 import React from "react";
 import TriggerButton from "../trigger-button";

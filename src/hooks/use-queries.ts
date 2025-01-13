@@ -27,7 +27,7 @@ export const useQueryUser = () => {
 export const useQueryAutomationPosts = () => {
   const fetchPosts = async () => await getProfilePosts()
   return useQuery({
-    queryKey: ["instagram-media"],
-    queryFn: fetchPosts
+    queryKey: ['instagram-media'],
+    queryFn: fetchPosts,
   })
 }

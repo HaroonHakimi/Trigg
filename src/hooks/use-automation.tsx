@@ -147,30 +147,35 @@ export type InstagramPost = {
 }
 
 export const useAutomationPosts = (id: string) => {
+  const [posts, setPosts] = useState<
+    {
+      postid: string
+      caption?: string
+      media: string
+      mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+    }[]
+  >([])
 
-  const [posts, setPosts] = useState<InstagramPost[]>([])
-
-  const onSelectPost = (post: InstagramPost) => {
-    setPosts((prev) => {
-      if (prev.find(p => p.postid === post.postid)) {
-        return prev.filter((item) => item.postid !== post.postid)
+  const onSelectPost = (post: {
+    postid: string
+    caption?: string
+    media: string
+    mediaType: 'IMAGE' | 'VIDEO' | 'CAROSEL_ALBUM'
+  }) => {
+    setPosts((prevItems) => {
+      if (prevItems.find((p) => p.postid === post.postid)) {
+        return prevItems.filter((item) => item.postid !== post.postid)
       } else {
-        return [
-          ...prev, post
-        ]
+        return [...prevItems, post]
       }
     })
   }
 
   const { mutate, isPending } = useMutationData(
-  ['attatch-posts'],
-  () => savePosts(id, posts),
-  'automation-info',
-  () => setPosts([])
+    ['attach-posts'],
+    () => savePosts(id, posts),
+    'automation-info',
+    () => setPosts([])
   )
-
-  return {
-    posts, onSelectPost, mutate, isPending
-  }
-
+  return { posts, onSelectPost, mutate, isPending }
 }

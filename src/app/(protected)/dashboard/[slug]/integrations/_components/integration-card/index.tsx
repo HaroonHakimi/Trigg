@@ -1,3 +1,4 @@
+'use client'
 import { onUserInfo } from "@/actions/user";
 import { onOAuthInstagram } from "@/actions/user/inegrations";
 import { Button } from "@/components/ui/button";
