@@ -132,18 +132,42 @@ export const getProfilePosts = async () => {
   try {
     const profile = await findUser(user.id);
 
-    const posts = await fetch(
-      `${process.env.INSTAGRAM_BASE_URL}/me/media?fields=id,caption,media_url,media_type,
-      timestamp&limit=10&access_token=${profile?.integrations[0].token}`
-    );
+    if (!profile?.integrations?.[0]?.token) {
+      console.log("❌ No Instagram integration found");
+      return { 
+        status: 404, 
+        data: { error: "No Instagram integration found" } 
+      };
+    }
+    
+    if (!profile?.integrations?.[0]?.token) {
+      console.log("❌ No Instagram integration found");
+      return { 
+        status: 404, 
+        data: { error: "No Instagram integration found" } 
+      };
+    }
 
+    const url = `${process.env.INSTAGRAM_BASE_URL}/me/media?fields=id,caption,media_url,media_type,timestamp&limit=10&access_token=${profile.integrations[0].token}`;
+    
+    const posts = await fetch(url);
     const parsed = await posts.json();
-    if (parsed) return { status: 200, data: parsed };
-    console.log("❌ Error in getting posts");
-    return { status: 404 };
+    
+    if (parsed.error) {
+      console.log("❌ Instagram API error:", parsed.error);
+      return { 
+        status: parsed.error.code || 400, 
+        data: { error: parsed.error.message } 
+      };
+    }
+
+    return { status: 200, data: parsed };
   } catch (error) {
     console.log("❌ server side error in getting posts", error);
-    return { status: 500 };
+    return { 
+      status: 500, 
+      data: { error: "Failed to fetch Instagram posts" } 
+    };
   }
 };
 

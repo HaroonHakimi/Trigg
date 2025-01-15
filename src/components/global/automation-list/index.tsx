@@ -31,7 +31,7 @@ const AutomationList = (props: Props) => {
   const optimisticUiData = useMemo(() => {
     if (latestVariable?.variables) {
       const test = [latestVariable.variables, ...data.data];
-      console.log(test)
+      console.log(test);
       return { data: test };
     }
     return data;
@@ -54,21 +54,26 @@ const AutomationList = (props: Props) => {
 
             {automation.keywords.length > 0 ? (
               <div className="flex gap-x-2 flex-wrap mt-3">
-                <div
-                  className={cn(
-                    "rounded-full px-4 py-1 capitalize",
-                    (0 + 1) % 1 == 0 &&
-                      "bg-keyword-green/15 border-2 border-keyword-green",
-                    (1 + 1) % 1 == 0 &&
-                      "bg-keyword-purple/15 border-2 border-keyword-purple",
-                    (2 + 1) % 1 == 0 &&
-                      "bg-keyword-yellow/15 border-2 border-keyword-yellow",
-                    (3 + 1) % 1 == 0 &&
-                      "bg-keyword-red/15 border-2 border-keyword-red"
-                  )}
-                >
-                  get started
-                </div>
+                {
+                // @ts-ignore
+                automation.keywords.map((keyword, key) => (
+                    <div
+                    key={keyword.id}
+                      className={cn(
+                        "rounded-full px-4 py-1 capitalize",
+                        (0 + 1) % 1 == 0 &&
+                          "bg-keyword-green/15 border-2 border-keyword-green",
+                        (1 + 1) % 1 == 0 &&
+                          "bg-keyword-purple/15 border-2 border-keyword-purple",
+                        (2 + 1) % 1 == 0 &&
+                          "bg-keyword-yellow/15 border-2 border-keyword-yellow",
+                        (3 + 1) % 1 == 0 &&
+                          "bg-keyword-red/15 border-2 border-keyword-red"
+                      )}
+                    >
+                      {keyword.word}
+                    </div>
+                ))}
               </div>
             ) : (
               <div

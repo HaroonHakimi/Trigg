@@ -38,6 +38,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     --page-background: white;
+    --color-border: theme('colors.gray.200/30%')
 
     --scrollbar-track: transparent;
     --scrollbar-thumb: #545454;
@@ -155,7 +156,7 @@
 .radial--double--gradient--cards--top {
   background-image: radial-gradient(
     at top left,
-    rgba(51, 82, 204, 0.3) 50%,
+    rgba(255, 128, 0, 0.3) 50%,
     transparent 70%
   );
   background-size: 100% 100%;
@@ -165,9 +166,39 @@
 .radial--double--gradient--cards--bottom {
   background-image: radial-gradient(
     at bottom right,
-    rgba(51, 82, 204, 0.1) 50%,
+    rgba(255, 128, 0, 0.3) 50%,
     transparent 70%
   );
   background-size: 100% 100%;
   background-repeat: no-repeat;
+}
+
+.border-gradient {
+  position: relative;
+  background: black;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px; /* matches rounded-2xl */
+  padding: 2px; /* border width */
+  background: linear-gradient(
+    45deg,
+    #ea342a,
+    #d9ac17,
+    #ff7b08,
+    #ff0000
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.footer-link {
+  @apply text-[#FF8C00] hover:text-white cursor-pointer no-underline text-sm transition-all duration-200 ease-in-out;
 }

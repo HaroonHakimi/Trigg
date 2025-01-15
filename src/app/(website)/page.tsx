@@ -1,4 +1,5 @@
 import AnimatedBackground from "@/components/global/animated-background";
+import LandingPage from "@/components/global/landing-page/landing-page";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -41,11 +42,8 @@ export default function Home() {
   ];
   return (
     <main className="relative min-h-screen flex items-center justify-center">
-      <AnimatedBackground />
-      {/* <div className="relative z-10 text-white text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to My Landing Page</h1>
-        <p className="text-xl">Explore our amazing features</p>
-      </div> */}
+      {/* <AnimatedBackground /> */}
+      <LandingPage />
     </main>
   );
 }

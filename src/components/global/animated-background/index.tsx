@@ -17,8 +17,8 @@ export default function AnimatedBackground() {
         filter: `blur(${isHovered ? '100px' : '50px'})`,
         transition: 'filter 0.5s ease-in-out',
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      // onMouseEnter={() => setIsHovered(true)}
+      // onMouseLeave={() => setIsHovered(false)}
     >
       <div className="absolute inset-0 animate-pulse-slow opacity-50 bg-gradient-to-br from-orange-500 to-transparent"></div>
     </div>

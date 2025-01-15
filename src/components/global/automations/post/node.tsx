@@ -31,7 +31,7 @@ const PostNode = ({ id }: Props) => {
         </div>
         <div>
           <Warning />
-          If they comme on...
+          If they comment on...
         </div>
         <div className="bg-background-80 p-3 rounded-xl flex flex-col gap-y-2">
           <div className="flex gap-x-2 items-center">
