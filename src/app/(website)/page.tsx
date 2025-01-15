@@ -41,8 +41,20 @@ export default function Home() {
     },
   ];
   return (
-    <main className="relative min-h-screen flex items-center justify-center">
-      {/* <AnimatedBackground /> */}
+    <main className="">
+      {/* <div className="container">
+        <div className="header">
+
+        </div>
+
+      </div>
+
+      <div className="glassy-overlay">
+        <canvas>
+
+        </canvas>
+
+      </div> */}
       <LandingPage />
     </main>
   );

@@ -4,6 +4,7 @@ import Hero from "./hero";
 import CallToAction from "./call-to-action";
 import Footer from "./footer";
 import Testimonials from "./testiomonials";
+import Introduction from "./introduction";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const LandingPage = (props: Props) => {
       <Hero />
       <Testimonials />
       <CallToAction />
+      <Introduction/>
       <Footer />
     </div>
   );
