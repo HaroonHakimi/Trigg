@@ -15,30 +15,30 @@ export const Testimonials = (props: Props) => {
   const testimonials = [
     {
       quote:
-        "Sphereal has completely transformed the way we collaborate. The AI chatbot's ability to automate tasks and provide insightful recommendations has saved us hours each week. It's now an indispensable part of our workflow.",
+        "This DM automation platform has revolutionized how I manage my social media accounts. The AI-powered responses are fast, accurate, and incredibly helpful in engaging with my audience. It’s a must-have for any creator!",
       name: "Ashwin Santiago",
-      title: "Operations Manager",
+      title: "Content Creator",
       image: "/testimonial-images/ashwin-santiago.jpg",
     },
     {
       quote:
-        "Sphereal integrates effortlessly with our existing tools, and the AI chatbot feels like a natural extension of our team. The responses are impressively accurate, and it's always learning from our interactions.",
+        "Automating DMs has saved me countless hours every week. The platform seamlessly integrates with my social media profiles, and the AI-powered replies feel personal and professional. Highly recommend it!",
       name: "Alec Whitten",
-      title: "Lead Developer",
+      title: "Social Media Manager",
       image: "/testimonial-images/alec-whitten.jpg",
     },
     {
       quote:
-        "Sphereal's AI has elevated our customer service to a whole new level. Its real-time responses and personalized recommendations help us address client needs faster than ever. I can't imagine our support team without it.",
+        "The AI-powered tier for advanced reply automation is a game changer. It enables me to handle inquiries quickly and keeps my audience engaged while I focus on creating content. I can’t imagine managing DMs without it.",
       name: "Rene Wells",
-      title: "Customer Success Manager",
+      title: "Digital Marketer",
       image: "/testimonial-images/rene-wells.jpg",
     },
     {
       quote:
-        "I've never seen a tool like Sphereal. It's intuitive, responsive, and has helped us streamline projects that would normally take days. The AI capabilities are unmatched in terms of accuracy and speed.",
+        "This platform has been a lifesaver for my social media workflow. The automated replies are spot on, and the customization options make it a perfect fit for my brand. It’s intuitive and easy to use—highly recommended!",
       name: "Mollie Hall",
-      title: "Product Designer",
+      title: "Influencer",
       image: "/testimonial-images/mollie-hall.jpg",
     },
   ];
@@ -91,8 +91,9 @@ export const Testimonials = (props: Props) => {
                   )}
                 </AnimatePresence>
                 <motion.div
-                layout='position'
-                className="flex gap-2 md:flex-col ">
+                  layout="position"
+                  className="flex gap-2 md:flex-col "
+                >
                   {testimonials.map((testimonial, index) => (
                     <div
                       key={testimonial.name}

@@ -15,6 +15,7 @@ import CreateAutomation from "../create-automation";
 import Search from "../search";
 import Notifications from "./notifications";
 import MainBreadCrumb from "../main-bread-crumb";
+import Link from "next/link";
 
 type Props = {
   slug: string;
@@ -34,9 +35,9 @@ const Navbar = ({ slug }: Props) => {
         bg-opacity-90 bg-clip-padding 
         backdrop-filter backdrop--blur__safari backdrop-blur-3xl"
               >
-                <div className="flex gap-x-2 items-center justify-center">
+                <Link href="/dashboard" className="cursor-pointer  flex gap-x-2 items-center justify-center">
                   <LogoSmall />
-                </div>
+                </Link>
                 <div className="flex flex-col py-3">
                   <Items page={page} slug={slug} />
                 </div>

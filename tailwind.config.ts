@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'moving-gradient': 'linear-gradient(45deg, #000000, #ff4500, #ff7518, #000000)', // Black and orange tones
+      },
       colors: {
         'in-active': '#545454',
         connector: '#F0F1F6',

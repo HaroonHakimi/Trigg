@@ -12,7 +12,8 @@ import {
 import { CheckCircle, MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useEffect } from "react";
+import gsap from "gsap";
 export default function Home() {
   const plans = [
     {
@@ -40,22 +41,17 @@ export default function Home() {
       cta: "Upgrade Now",
     },
   ];
+
   return (
     <main className="">
-      {/* <div className="container">
-        <div className="header">
-
+      <div className="absolute top-[50px] inset-0 justify-center inline-flex flex-row mt-24">
+        <div className="absolute top-[50px] inset-0 justify-center inline-flex flex-row">
+          <div className="bg-[#f89e04] w-[400px] h-[400px] rounded-[9999px] relative bg-1 opacity-50 bg-blur"></div>
+          <div className="bg-[#e15300] w-[300px] h-[300px] rounded-[9999px] relative bg-2 opacity-50 bg-blur"></div>
+          <div className="bg-[#ff0000] w-[400px] h-[400px] rounded-[9999px] relative bg-1 opacity-50 bg-blur"></div>
         </div>
-
+        <LandingPage />
       </div>
-
-      <div className="glassy-overlay">
-        <canvas>
-
-        </canvas>
-
-      </div> */}
-      <LandingPage />
     </main>
   );
 }

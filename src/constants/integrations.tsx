@@ -8,36 +8,41 @@ type Props = {
     title: string
     description: string
     icon: React.ReactNode
-    strategy: 'INSTAGRAM' | 'TELEGRAM' | 'X' | 'WHATSAPP'    
+    strategy: 'INSTAGRAM' | 'TELEGRAM' | 'X' | 'WHATSAPP'
+    soon: boolean
 }
 
 export const INTEGRATION_CARDS: Props[] = [
   {
     title: "Connect Instagram",
     description:
-      " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam officia hic suscipit maiores exercitationem quis?",
+      "Simple, easy connection",
     icon: <InstagramDuoToneBlue/>,
-    strategy: 'INSTAGRAM'
+    strategy: 'INSTAGRAM',
+    soon: false
   },
   {
     title: "Connect Telegram",
     description:
-      " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam officia hic suscipit maiores exercitationem quis?",
+      "Simple, easy connection",
     icon: <Telegram/>,
-    strategy: 'TELEGRAM'
+    strategy: 'TELEGRAM',
+    soon: true
   },
   {
     title: "Connect X (Twitter)",
     description:
-      " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam officia hic suscipit maiores exercitationem quis?",
+      "Simple, easy connection",
     icon: <XTwitter/>,
-    strategy: 'X'
+    strategy: 'X',
+    soon: true
   },
   {
     title: "Connect Whatsapp",
     description:
-      " Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam officia hic suscipit maiores exercitationem quis?",
+      "Simple, easy connection",
     icon: <Whatsapp/>,
-    strategy: 'WHATSAPP'
+    strategy: 'WHATSAPP',
+    soon: true
   },
 ];

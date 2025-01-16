@@ -5,6 +5,7 @@ import CallToAction from "./call-to-action";
 import Footer from "./footer";
 import Testimonials from "./testiomonials";
 import Introduction from "./introduction";
+import Showcase from "./showcase";
 
 type Props = {};
 
@@ -13,9 +14,10 @@ const LandingPage = (props: Props) => {
     <div className="w-full">
       <Nav />
       <Hero />
-      <Testimonials />
-      <CallToAction />
       <Introduction/>
+      <Testimonials />
+      <Showcase/>
+      <CallToAction />
       <Footer />
     </div>
   );

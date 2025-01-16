@@ -11,7 +11,7 @@ import { LogoSmall } from "@/svgs/logo-small";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Dashboard", href: "/dashboard" },
-  { label: "Upgrade", href: "/dashboard/upgrade" },
+  { label: "Upgrade", href: "/dashboard" },
 ];
 
 export const Nav = () => {

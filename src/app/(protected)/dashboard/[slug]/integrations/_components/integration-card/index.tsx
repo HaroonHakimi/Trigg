@@ -10,9 +10,10 @@ type Props = {
   description: string;
   icon: React.ReactNode;
   strategy: "INSTAGRAM" | "TELEGRAM" | "X" | "WHATSAPP";
+  soon: boolean
 };
 
-const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
+const IntegrationCard = ({ description, icon, strategy, title, soon }: Props) => {
 
   const onInstaOAuth = () => onOAuthInstagram(strategy)
 
@@ -37,10 +38,14 @@ const IntegrationCard = ({ description, icon, strategy, title }: Props) => {
       </div>
       <Button
           onClick={onInstaOAuth}
-          disabled={integrated?.name === strategy}
+          disabled={integrated?.name === strategy || soon}
         className="bg-gradient-to-br text-white rounded-full  hover:opacity-70 transition duration-200 from-[#ff8c00] to-[#653801]"
       >
-        {integrated ? "Connected" : "Connect"}
+        {/* {integrated ? "Connected" : "Connect"}
+        {soon && 'Coming Soon'} */}
+        {
+          soon ? 'Coming Soon' : integrated ? 'Connected' : 'Connect'
+        }
       </Button>
     </div>
   );
