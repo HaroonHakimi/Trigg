@@ -5,7 +5,8 @@ import { redirect } from "next/navigation";
 import { createUser, findUser, updateSubscription } from "./queries";
 import { refreshToken } from "@/lib/fetch";
 import { updateIntegration } from "./inegrations";
-import { stripe } from "@/app/(protected)/api/payment/route";
+import { stripe } from "@/lib/stripe";
+// import { stripe } from "@/app/(protected)/api/payment/route";
 
 export const onCurrentUser = async () => {
   const user = await currentUser();

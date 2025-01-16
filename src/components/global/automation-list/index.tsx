@@ -18,6 +18,14 @@ const AutomationList = (props: Props) => {
   const { latestVariable } = useMutationDataState(["create-automation"]);
 
   const { pathname } = usePaths();
+  const optimisticUiData = useMemo(() => {
+    if (latestVariable?.variables, data) {
+      const test = [latestVariable.variables, ...data.data];
+      console.log(test);
+      return { data: test };
+    }
+    return data || { data: [] };
+  }, [latestVariable, data]);
 
   if (data?.status !== 200 || data.data.length <= 0) {
     return (
@@ -28,14 +36,7 @@ const AutomationList = (props: Props) => {
     );
   }
 
-  const optimisticUiData = useMemo(() => {
-    if (latestVariable?.variables) {
-      const test = [latestVariable.variables, ...data.data];
-      console.log(test);
-      return { data: test };
-    }
-    return data;
-  }, [latestVariable, data]);
+  
 
   return (
     <div className="flex flex-col gap-y-3">

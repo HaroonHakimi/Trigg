@@ -63,7 +63,7 @@ const PrivacyPolicy = (props: Props) => {
     childrensPrivacy:
       "Our services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, please contact us immediately.",
     changesToPolicy:
-      "We may update this Privacy Policy from time to time. The updated policy will be posted on this page with the 'Effective Date' updated. Your continued use of our services after any changes constitutes acceptance of the new policy.",
+      "We may update this Privacy Policy from time to time. The updated policy will be posted on this page with the &apos;Effective Date&apos; updated. Your continued use of our services after any changes constitutes acceptance of the new policy.",
     contactUs: {
       companyName: "Trigg",
       email: "haroonhakimi2005@gmail.com",
@@ -132,12 +132,12 @@ const PrivacyPolicy = (props: Props) => {
           <p className="mb-2">{privacyPolicy.yourRightsAndChoices.optOutOptions}</p>
         </div>
 
-        {/* Security, Children's Privacy, and Changes */}
+        {/* Security, Children&apos;s Privacy, and Changes */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Security of Your Information</h2>
           <p className="mb-4">{privacyPolicy.securityOfYourInformation}</p>
 
-          <h2 className="text-2xl font-semibold mb-4">Children's Privacy</h2>
+          <h2 className="text-2xl font-semibold mb-4">Children&apos;s Privacy</h2>
           <p className="mb-4">{privacyPolicy.childrensPrivacy}</p>
 
           <h2 className="text-2xl font-semibold mb-4">Changes to Policy</h2>

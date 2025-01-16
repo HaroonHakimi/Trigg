@@ -18,14 +18,14 @@ const CallToAction = () => {
         repeat: Infinity,
       }
     );
-  }, []);
+  }, [scope, animate]);
 
   useEffect(() => {
     if (animation.current) {
       if (isHovered) animation.current.speed = 0.5;
       else animation.current.speed = 1;
     }
-  }, [isHovered]);
+  }, [isHovered,]);
 
   return (
     <section className="py-24 text-white/70">
