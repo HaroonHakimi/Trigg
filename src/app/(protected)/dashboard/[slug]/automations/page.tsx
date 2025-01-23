@@ -21,11 +21,11 @@ const Page = (props: Props) => {
           <div>
             <h2 className="text-xl">Automations</h2>
             <p className="text-text-secondary">
-              Your live automations will show here
+              Your live automations will show on the left
             </p>
           </div>
           <div className="flex flex-col gap-y-3">
-            {new Array(3).fill(0).map((item) => (
+            {/* {new Array(3).fill(0).map((item) => (
               <div key={item} className="flex items-start justify-between">
                 <div className="flex flex-col">
                   <h3 className="font-medium">
@@ -37,7 +37,7 @@ const Page = (props: Props) => {
                 </div>
                 <Check />
               </div>
-            ))}
+            ))} */}
           </div>
           <CreateAutomation />
         </div>

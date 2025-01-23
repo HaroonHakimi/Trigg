@@ -24,7 +24,7 @@ export const createAutomations = async (id?: string) => {
     if (create) return { status: 200, data: "Automation created" };
     return { status: 400, data: "Oops! Something went wrong" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 1" };
   }
 };
 
@@ -68,7 +68,7 @@ export const updateAutomationName = async (
     if (data) return { status: 200, data: "Automation successfully updated" };
     return { status: 404, data: "Oops! Something went wrong" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 2" };
   }
 };
 
@@ -85,7 +85,7 @@ export const saveListener = async (
     if (create) return { status: 200, data: "Listener created" };
     return { status: 404, data: "Cant save listener" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 3" };
   }
 };
 
@@ -97,7 +97,7 @@ export const saveTrigger = async (automationId: string, trigger: string[]) => {
     if (create) return { status: 200, data: "Trigger saved" };
     return { status: 404, data: "Cant save trigger" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 4" };
   }
 };
 
@@ -110,7 +110,7 @@ export const saveKeyword = async (automationId: string, keyword: string) => {
     if (create) return { status: 200, data: "Keyword saved" };
     return { status: 404, data: "Cant save keyword" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 5" };
   }
 };
 
@@ -123,7 +123,7 @@ export const deleteKeyword = async (id: string) => {
     if (deleted) return { status: 200, data: "Keyword deleted" };
     return { status: 404, data: "Cant delete keyword" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 6" };
   }
 };
 
@@ -175,15 +175,15 @@ export const savePosts = async (
   automationId: string,
   posts: InstagramPost[]
 ) => {
-  const user = await onCurrentUser();
+  await onCurrentUser();
 
   try {
     const create = await addPost(automationId, posts);
 
     if (create) return { status: 200, data: "Posts saved" };
-    return { status: 404, data: "Cant save posts" };
+    return { status: 404, data: "Unable to save posts" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error: Failed to save posts" };
   }
 };
 
@@ -200,6 +200,6 @@ export const activateAutomation = async (id: string, state: boolean) => {
       };
     return { status: 404, data: "Cant save posts" };
   } catch (error) {
-    return { status: 500, data: "Internal Server Error" };
+    return { status: 500, data: "Internal Server Error 7" };
   }
 };

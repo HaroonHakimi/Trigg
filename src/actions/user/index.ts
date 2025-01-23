@@ -59,7 +59,7 @@ export const onBoardUser = async () => {
       user.emailAddresses[0].emailAddress!
     );
 
-    return { status: 201, dat: created };
+    return { status: 201, data: created };
   } catch (error) {
     console.log(error);
     return { status: 500 };

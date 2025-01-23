@@ -19,7 +19,7 @@ const Showcase = (props: Props) => {
               muted
               loop
             >
-              <source src="/landing-page-video/showcase.mp4" type="video/mp4" />
+              <source src="/mp4-files/showcase.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

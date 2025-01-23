@@ -11,6 +11,13 @@ type Props = {
 export const DASHBOARD_CARDS: Props[] = [
   {
     id: v4(),
+    label: 'Getting Started',
+    subLabel: 'Set up your facebook profile, to start receiving messages',
+    description: 'Get products in front of your followers in as many places',
+    link: '/tutorial',
+  },
+  {
+    id: v4(),
     label: 'Set-up Auto Replies',
     subLabel: 'Deliver a product lineup through Instagram DM',
     description: 'Get products in front of your followers in as many places',

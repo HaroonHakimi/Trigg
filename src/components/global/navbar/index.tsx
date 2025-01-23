@@ -65,12 +65,12 @@ const Navbar = ({ slug }: Props) => {
               </div>
             </Sheet>
           </span>
-          {/* <div className="flex items-center gap-x-3"> */}
-
-          {/* <Search/>
+          {/* <div className="flex items-center">
+            
           <CreateAutomation/>
-          <Notifications/> */}
-          {/* </div> */}
+          </div> */}
+
+          
         </div>
         <MainBreadCrumb page={page === slug ? 'Home' : page}
         slug={slug}
