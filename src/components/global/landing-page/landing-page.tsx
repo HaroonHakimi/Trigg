@@ -6,6 +6,7 @@ import Footer from "./footer";
 import Testimonials from "./testiomonials";
 import Introduction from "./introduction";
 import Showcase from "./showcase";
+import Pricing from "./pricing";
 
 type Props = {};
 
@@ -17,6 +18,7 @@ const LandingPage = (props: Props) => {
       <Introduction/>
       <Testimonials />
       <Showcase/>
+      <Pricing/>
       <CallToAction />
       <Footer />
     </div>
