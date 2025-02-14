@@ -9,6 +9,7 @@ const Footer = () => {
     { label: "Dashboard", href: "/dashboard" },
     { label: "Upgrade", href: "/dashboard" },
     { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
   ];
   return (
     <section className="py-16 text-white/50 bg-black z-100">

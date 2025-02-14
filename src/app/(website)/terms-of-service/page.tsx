@@ -23,7 +23,7 @@ export default function TermsOfService() {
           <section className="mb-6">
             <h2 className="text-xl font-semibold mb-2">3. User Responsibilities</h2>
             <p className="text-white/40">
-              Users must comply with platform guidelines, including Meta's policies. Trigg is not responsible for any 
+              Users must comply with platform guidelines, including Meta&apos;s policies. Trigg is not responsible for any 
               violations that may lead to account restrictions.
             </p>
           </section>
