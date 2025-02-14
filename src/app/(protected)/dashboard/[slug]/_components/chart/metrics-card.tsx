@@ -7,12 +7,27 @@ type Props = {};
 
 const MetricsCard = (props: Props) => {
   const { data } = useQueryAutomations();
+
   const comments = data?.data.reduce((current, next) => {
     return current + next.listener?.commentCount!;
   }, 0);
   const dms = data?.data?.reduce((current, next) => {
     return current + next.listener?.dmCount!;
   }, 0);
+
+
+  // Make sure to handle potential undefined values gracefully.
+  const automations = data?.data || [];
+
+  // Calculate the total number of comments and dms from each automation's listener.
+  const totalComments = automations.reduce((total, automation) => {
+    return total + (automation.listener?.commentCount || 0);
+  }, 0);
+
+  const totalDms = automations.reduce((total, automation) => {
+    return total + (automation.listener?.dmCount || 0);
+  }, 0);
+
   return (
     <div className="h-full flex lg:flex-row flex-col gap-5 items-end">
       {[1, 2].map((i) => (
@@ -36,14 +51,14 @@ const MetricsCard = (props: Props) => {
             <div>
               <h3 className="text-3xl font-bold">100%</h3>
               <p className="text-sm text-text-secondary">
-                {comments} out of {comments} comments replied
+                {totalComments} out of {totalComments} comments replied
               </p>
             </div>
           ) : (
             <div>
               <h3 className="text-3xl font-bold">100%</h3>
               <p className="text-sm text-text-secondary">
-                {dms} out of {dms} dms replied
+                {totalDms} out of {totalDms} dms replied
               </p>
             </div>
           )}
